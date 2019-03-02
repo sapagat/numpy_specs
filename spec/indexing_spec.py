@@ -1,7 +1,7 @@
 from mamba import *
 from expects import *
 import numpy as np
-from expects.matchers import Matcher
+from .matchers import equal_np_array
 
 with description('Indexing') as self:
     with description('working with a 1-dimensional array, x') as self:
@@ -133,13 +133,3 @@ with description('Indexing') as self:
                 [4, 50, 60],
                 [7, 8, 9]
             ]))
-
-class equal_np_array(Matcher):
-    def __init__(self, expected):
-        self._expected = expected
-
-    def _match(self, candidate):
-        if np.array_equal(self._expected, candidate):
-            return True, ['Arrays are equal']
-
-        return False, ['Arrays are different.\n']

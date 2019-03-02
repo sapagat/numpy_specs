@@ -1,6 +1,7 @@
 from mamba import *
 from expects import *
 import numpy as np
+from .matchers import equal_np_array
 
 with description('N-dimensional array (ndarray)') as self:
     with it('can be constructed with np.array'):
@@ -37,9 +38,7 @@ with description('N-dimensional array (ndarray)') as self:
 
             view = one_dimensional[0:2]
 
-            expect(view).to(have_len(2))
-            expect(view).to(start_with(1))
-            expect(view).to(end_with(2))
+            expect(view).to(equal_np_array([1, 2]))
 
         with it('mutates the array when modifying the view'):
             one_dimensional = np.array([1 ,2, 3])
@@ -80,8 +79,7 @@ with description('N-dimensional array (ndarray)') as self:
             view = two_dimensional[:, 1]
 
             expect(view.shape).to(equal((2,)))
-            expect(view[0]).to(equal(2))
-            expect(view[1]).to(equal(5))
+            expect(view).to(equal_np_array([2, 5]))
 
         with it('mutates the array when modifying the view'):
             two_dimensional = np.array([
