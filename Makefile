@@ -2,4 +2,4 @@ build:
 	docker-compose build
 
 test:
-	docker-compose run app pipenv run mamba --format=documentation
+	docker-compose run --rm app pipenv run mamba --format=documentation
