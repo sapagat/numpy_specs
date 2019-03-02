@@ -48,3 +48,14 @@ with description('N-dimensional array (ndarray)') as self:
             slice[0] = 10
 
             expect(one_dimensional[0]).to(equal(10))
+
+    with description('working with a 2-dimensional array') as self:
+        with it('has shape that represents rows X columns'):
+            two_dimensional = np.array([
+                [1, 2, 3],
+                [4, 5, 6]
+            ])
+
+            expect(two_dimensional.shape).to(have_len(2))
+            expect(two_dimensional.shape[0]).to(equal(2))
+            expect(two_dimensional.shape[1]).to(equal(3))
