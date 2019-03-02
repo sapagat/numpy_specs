@@ -3,7 +3,7 @@ from expects import *
 import numpy as np
 from .matchers import equal_np_array
 
-with description('Indexing') as self:
+with description('Basic indexing') as self:
     with description('working with a 1-dimensional array, x') as self:
         with before.each:
             self.x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
