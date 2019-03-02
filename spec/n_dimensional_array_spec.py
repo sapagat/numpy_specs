@@ -59,3 +59,14 @@ with description('N-dimensional array (ndarray)') as self:
             expect(two_dimensional.shape).to(have_len(2))
             expect(two_dimensional.shape[0]).to(equal(2))
             expect(two_dimensional.shape[1]).to(equal(3))
+
+        with it('can select a single element with an index (row, column)'):
+            two_dimensional = np.array([
+                [1, 2, 3],
+                [4, 5, 6]
+            ])
+
+            two_dimensional[1, 1]
+
+            expect(two_dimensional[1, 1]).to(equal(5))
+            expect(two_dimensional[0, 2]).to(equal(3))
