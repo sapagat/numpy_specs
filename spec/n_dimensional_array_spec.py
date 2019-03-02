@@ -23,3 +23,13 @@ with description('N-dimensional array (ndarray)') as self:
         expect(one_dimensional[0]).to(equal(1))
         expect(one_dimensional[1]).to(equal(2))
         expect(one_dimensional[-1]).to(equal(3))
+
+    with it('does not affect the 1-D array when modifying a selected value'):
+        elements = [1 ,2, 3]
+        one_dimensional = np.array([1 ,2, 3])
+
+        to_modify = one_dimensional[0]
+        to_modify += 10
+
+        expect(one_dimensional[0]).to(equal(1))
+        expect(to_modify).to(equal(11))
