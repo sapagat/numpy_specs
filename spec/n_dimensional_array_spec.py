@@ -14,3 +14,12 @@ with description('N-dimensional array (ndarray)') as self:
 
         expect(len(one_dimensional.shape)).to(equal(1))
         expect(one_dimensional.shape[0]).to(equal(len(elements)))
+
+    with it('can access the elements by passing an index'):
+        elements = [1 ,2, 3]
+
+        one_dimensional = np.array(elements)
+
+        expect(one_dimensional[0]).to(equal(1))
+        expect(one_dimensional[1]).to(equal(2))
+        expect(one_dimensional[-1]).to(equal(3))
