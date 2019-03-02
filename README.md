@@ -1,6 +1,6 @@
 # Numpy specs
 
-Learning numpy by writing tests that explain its behaviour.
+Learning numpy by writing tests that explain its behavior.
 
 
 ## Requirements
