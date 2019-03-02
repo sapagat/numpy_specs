@@ -32,20 +32,20 @@ with description('N-dimensional array (ndarray)') as self:
             expect(one_dimensional[0]).to(equal(1))
             expect(to_modify).to(equal(11))
 
-        with it('can slice the array'):
+        with it('can slice the array into a view'):
             one_dimensional = np.array([1 ,2, 3])
 
-            subset = one_dimensional[0:2]
+            view = one_dimensional[0:2]
 
-            expect(subset).to(have_len(2))
-            expect(subset).to(start_with(1))
-            expect(subset).to(end_with(2))
+            expect(view).to(have_len(2))
+            expect(view).to(start_with(1))
+            expect(view).to(end_with(2))
 
-        with it('mutates the array when modifying a sliced value'):
+        with it('mutates the array when modifying the view'):
             one_dimensional = np.array([1 ,2, 3])
-            slice = one_dimensional[0:2]
+            view = one_dimensional[0:2]
 
-            slice[0] = 10
+            view[0] = 10
 
             expect(one_dimensional[0]).to(equal(10))
 
@@ -70,3 +70,26 @@ with description('N-dimensional array (ndarray)') as self:
 
             expect(two_dimensional[1, 1]).to(equal(5))
             expect(two_dimensional[0, 2]).to(equal(3))
+
+        with it('can slice the array into a view'):
+            two_dimensional = np.array([
+                [1, 2, 3],
+                [4, 5, 6]
+            ])
+
+            view = two_dimensional[:, 1]
+
+            expect(view.shape).to(equal((2,)))
+            expect(view[0]).to(equal(2))
+            expect(view[1]).to(equal(5))
+
+        with it('mutates the array when modifying the view'):
+            two_dimensional = np.array([
+                [1, 2, 3],
+                [4, 5, 6]
+            ])
+
+            view = two_dimensional[:, 1]
+            view[1] = 10
+
+            expect(two_dimensional[1,1]).to(equal(10))
