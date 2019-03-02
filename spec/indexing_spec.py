@@ -64,6 +64,13 @@ with description('Indexing') as self:
 
             expect(view).to(equal_np_array([0, 1, 2, 3, 4, 5, 6]))
 
+        with it('changes x if the view is changed'):
+            view = self.x[0:2]
+
+            view *= 10
+
+            expect(self.x).to(equal_np_array([0, 10, 2, 3, 4, 5, 6, 7, 8, 9]))
+
     with description('working with a 2-dimensional matrix'):
         with before.each:
             self.matrix = np.array([
@@ -114,6 +121,17 @@ with description('Indexing') as self:
                 [[1, 2, 3]],
                 [[4, 5 ,6]],
                 [[7, 8, 9]]
+            ]))
+
+        with it('changes the matrix if the view is changed'):
+            view = self.matrix[0:2, 1:]
+
+            view *= 10
+
+            expect(self.matrix).to(equal_np_array([
+                [1, 20, 30],
+                [4, 50, 60],
+                [7, 8, 9]
             ]))
 
 class equal_np_array(Matcher):
