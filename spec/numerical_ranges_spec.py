@@ -75,3 +75,63 @@ with description('Numerical ranges creation routines') as self:
             values, step = np.linspace(start, stop, number, retstep=True)
 
             expect(step).to(equal(1.25))
+
+    with description('working with "logspace"'):
+        with it('creates evenly spaced numbers on a log scale'):
+            start = 2.
+            stop = 4.
+            number = 3
+            base = 2.0
+
+            values = np.logspace(start, stop, number, base=base)
+
+            expect(values).to(equal_np_array([4, 8, 16]))
+
+        with it('uses by default base 10'):
+            start = 1
+            stop = 5
+            number = 5
+
+            values = np.logspace(start, stop, number)
+
+            expect(values).to(equal_np_array([10, 100, 1000, 10000, 100000]))
+
+        with it('uses by default 50 samples'):
+            start = 2.
+            stop = 4.
+            base = 2.0
+
+            values = np.logspace(start, stop, base=base)
+
+            expect(values).to(have_len(50))
+
+        with it('can exclude the stop point'):
+            start = 2.
+            stop = 5.
+            number = 3
+            base = 2.0
+
+            values = np.logspace(start, stop, number, base=base, endpoint=False)
+
+            expect(values).to(equal_np_array([4, 8, 16]))
+
+    with description('working with "geomspace"'):
+        with it('returns a geometric progression by specifying its endpoints'):
+            start = 1
+            stop = 256
+            number = 9
+
+            values = np.geomspace(start, stop, num=number)
+
+            expect(values).to(have_len(number))
+            rounded_values = np.around(values).astype(int)
+            expect(rounded_values).to(equal_np_array([1, 2, 4, 8, 16, 32, 64, 128, 256]))
+
+        with it('has some surpises when working with integers'):
+            start = 1
+            stop = 256
+            number = 9
+
+            values = np.geomspace(start, stop, num=number, dtype=int)
+
+            expect(values).to(equal_np_array([1, 2, 4, 7, 16, 32, 63, 127, 256]))
