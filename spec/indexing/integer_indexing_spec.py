@@ -1,7 +1,7 @@
 from mamba import *
 from expects import *
 import numpy as np
-from .matchers import equal_np_array
+from ..matchers import equal_np_array
 
 with description('Integer array indexing'):
     with it('uses a row index and a column index'):

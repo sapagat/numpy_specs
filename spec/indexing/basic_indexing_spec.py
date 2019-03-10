@@ -1,7 +1,7 @@
 from mamba import *
 from expects import *
 import numpy as np
-from .matchers import equal_np_array
+from ..matchers import equal_np_array
 
 with description('Basic indexing') as self:
     with description('working with a 1-dimensional array, x') as self:
