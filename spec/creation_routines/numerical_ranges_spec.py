@@ -1,7 +1,7 @@
 from mamba import *
 from expects import *
 import numpy as np
-from .matchers import equal_np_array
+from ..matchers import equal_np_array
 
 with description('Numerical ranges creation routines') as self:
     with description('working with "arange"'):
